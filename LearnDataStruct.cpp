@@ -8,7 +8,8 @@ int main()
     std::cout << "Hello World!\n";
     int arr[] = { 5,9,1,3,74,6,2 };
     int len = 7;
-    bubbleSort(arr, len);
+    //bubbleSort(arr, len);
+    selectionSort(arr, len);
     for (int i = 0; i < len; i++)
     {
         cout << arr[i] << "\t";
