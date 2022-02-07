@@ -79,5 +79,20 @@ void selectionSort(T array[], int len) {
 */
 template<typename T>
 void insertSort(T array[], int len) {
-
+	for (int i = 1; i < len; i++)
+	{
+		int waitNum = array[i];
+		int j = i - 1;
+		for (; j >= 0; )
+		{
+			if (waitNum < array[j]) {
+				array[j+1] = array[j];
+			}
+			else {
+				break;
+			}
+			j--;
+		}
+		array[j+1] = waitNum;
+	}
 }
