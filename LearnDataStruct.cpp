@@ -11,6 +11,8 @@ int main()
     //bubbleSort(arr, len);
     //selectionSort(arr, len);
     insertSort(arr, len);
+    //shellSort(arr, len);
+
     for (int i = 0; i < len; i++)
     {
         cout << arr[i] << "\t";

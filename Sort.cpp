@@ -68,7 +68,7 @@ void selectionSort(T array[], int len) {
 稳定性：true
 排序方式：内部排序
 平均时间复杂度：    O(n*n)
-最好时间复杂度：    O(n*n)
+最好时间复杂度：    O(n)
 最坏时间复杂度：    O(n*n)
 空间复杂度:         O(1)
 算法：将第一待排序序列第一个元素看做一个有序序列，把第二个元素到最后一个元素当成是未排序序列。
@@ -82,17 +82,52 @@ void insertSort(T array[], int len) {
 	for (int i = 1; i < len; i++)
 	{
 		int waitNum = array[i];
-		int j = i - 1;
-		for (; j >= 0; )
+		int j = i;
+		for ( ; j > 0 && waitNum < array[j - 1]; j--)
 		{
-			if (waitNum < array[j]) {
-				array[j+1] = array[j];
-			}
-			else {
-				break;
-			}
-			j--;
+				array[j] = array[j-1];
 		}
-		array[j+1] = waitNum;
+		array[j] = waitNum;
+	}
+}
+
+/*希尔排序：先将整个待排序的记录序列分割成为若干子序列分别进行直接插入排序，
+待整个序列中的记录"基本有序"时，再对全体记录进行依次直接插入排序。
+
+数据对象：
+稳定性：false
+排序方式：内部排序
+平均时间复杂度：	O(nlog2n)
+最好时间复杂度：    O(n)
+最坏时间复杂度：    O(nlog2n)
+空间复杂度:         
+算法：选择一个增量序列 t1，t2，……，tk，其中 ti > tj, tk = 1；
+
+按增量序列个数 k，对序列进行 k 趟排序；
+
+每趟排序，根据对应的增量 ti，将待排序列分割成若干长度为 m 的子序列，
+
+分别对各子表进行直接插入排序。仅增量因子为 1 时，整个序列作为一个表来处理，
+
+表长度即为整个序列的长度。
+*/
+template<typename T>
+void shellSort(T array[], int len) {
+	int d = 1;
+	while ( d < len/3 ) {
+		d = 3 * d + 1;
+	}
+	while (d > 0)
+	{
+		for (int  i = d; i < len; i++)
+		{
+			for (int j = i; j >= d && array[j] < array[j - d]; j -= d)
+			{
+				int temp = array[j];
+				array[j] = array[j - d];
+				array[j - d] = temp;
+			}
+		}
+		d /= 3;
 	}
 }
