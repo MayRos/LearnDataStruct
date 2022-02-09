@@ -131,3 +131,13 @@ void shellSort(T array[], int len) {
 		d /= 3;
 	}
 }
+
+template<typename T>
+void mergeSort(T array[], int len) {
+	T* a = arr;
+	T* b = new T[len];
+	for(int seg = 1; seg < len; seg+=seg){
+//		for(int start,mid = (start+seg)>len?(start+seg):len;)
+	}
+}
+
