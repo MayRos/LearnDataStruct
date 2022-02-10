@@ -155,11 +155,40 @@ template<typename T>
 void mergeSort(T array[], int len) {
 	T* a = array;
 	T* b = new T[len];
-	for (int i = 1; i < len; i += i)
+	for (int i = 1; i < len; i += i)							// 每次比较的步长逐步增大
 	{
-		for (int start = 0; start < len; start +=)
+		for (int start = 0; start < len; start += i + i )		// 每两组之间进行比较
 		{
-
+			int low = start;
+			int mid = (start + i) < len ? (start + i) : len;
+			int high = (start + i + i) < len ? (start + i + i) : len;
+			int k = low;
+			int start1 = low;									// 第一个数组的开始（含）
+			int end1 = mid;										// 第一个数组的结束（不含）
+			int start2 = mid;
+			int end2 = high;
+			while (start1 < end1 && start2 < end2)
+			{
+				b[k++] = a[start1] > a[start2] ? a[start2++] : a[start1++];
+			}
+			while (start1 < end1) {
+				b[k++] = a[start1++];
+			}
+			while (start2<end2)
+			{
+				b[k++] = a[start2++];
+			}
 		}
+		T* temp = a;
+		a = b;
+		b = temp;
 	}
+	if (a != array) {
+		for (int i = 0; i < len; i++)
+		{
+			b[i] = a[i];
+		}
+		b = a;
+	}
+	delete[] b;
 }

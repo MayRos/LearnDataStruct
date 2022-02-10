@@ -10,9 +10,9 @@ int main()
     int len = 7;
     //bubbleSort(arr, len);
     //selectionSort(arr, len);
-    insertSort(arr, len);
+    //insertSort(arr, len);
     //shellSort(arr, len);
-
+    mergeSort(arr, len);
     for (int i = 0; i < len; i++)
     {
         cout << arr[i] << "\t";
