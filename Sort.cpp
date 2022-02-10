@@ -100,7 +100,7 @@ void insertSort(T array[], int len) {
 平均时间复杂度：	O(nlog2n)
 最好时间复杂度：    O(n)
 最坏时间复杂度：    O(nlog2n)
-空间复杂度:         
+空间复杂度:         O(1)
 算法：选择一个增量序列 t1，t2，……，tk，其中 ti > tj, tk = 1；
 
 按增量序列个数 k，对序列进行 k 趟排序；
@@ -129,5 +129,37 @@ void shellSort(T array[], int len) {
 			}
 		}
 		d /= 3;
+	}
+}
+
+/*归并排序：是建立在归并操作上的一种有效的排序算法。该算法是采用分治法（Divide and Conquer）的一个非常典型的应用。
+
+数据对象：数组			链表
+稳定性：true
+排序方式：外部排序
+平均时间复杂度：	O(nlogn)
+最好时间复杂度：    O(nlogn)
+最坏时间复杂度：    O(nlogn)
+空间复杂度:         O(n)
+算法：申请空间，使其大小为两个已经排序序列之和，该空间用来存放合并后的序列；
+
+设定两个指针，最初位置分别为两个已经排序序列的起始位置；
+
+比较两个指针所指向的元素，选择相对小的元素放入到合并空间，并移动指针到下一位置；
+
+重复步骤 3 直到某一指针达到序列尾；
+
+将另一序列剩下的所有元素直接复制到合并序列尾。
+*/
+template<typename T>
+void mergeSort(T array[], int len) {
+	T* a = array;
+	T* b = new T[len];
+	for (int i = 1; i < len; i += i)
+	{
+		for (int start = 0; start < len; start +=)
+		{
+
+		}
 	}
 }
