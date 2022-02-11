@@ -213,4 +213,49 @@ void mergeSort(T array[], int len) {
 将另一序列剩下的所有元素直接复制到合并序列尾。
 */
 template<typename T>
-void mergeSort(T array[], int len) {
+void quickSort(T array[], int length) {
+	if (length <= 0) {
+		return;
+	}
+	int range[length][2] = { 0 };
+	int p = 0;
+	range[p][0] = 0;
+	range[p][1] = length - 1;
+	p++;
+	while (p) {
+		int r[2] = { 0 };
+		p--;
+		r[0] = range[p][0];
+		r[1] = range[p][1];
+		if (r[0] >= r[1]) {
+			continue;
+		}
+		T mid = array[r[0]];
+		int left = r[0] + 1;
+		int right = r[1];
+		while (left < right) {
+			while (array[left] < mid && left < right) {
+				left++;
+			}
+			while (array[right] >= mid && left < right) {
+				right++;
+			}
+			T temp = array[left];
+			array[left] = array[right];
+			array[right] = temp;
+		}
+		if (array[left] <= mid) {
+			array[left] = mid;
+			array[r[0]] = array[left];
+		}
+		else {
+			left--;
+		}
+		range[p][0] = r[0];
+		range[p][1] = left - 1;
+		p++;
+		range[p][0] = left + 1;
+		range[p][1] = r[1];
+		p++;
+	}
+}
