@@ -1,4 +1,5 @@
 #include <vector>
+#include <iostream>
 using namespace std;
 
 /*冒泡排序：它重复地走访过要排序的数列，一次比较两个元素，如果他们的顺序错误就把他们交换过来。
@@ -217,7 +218,8 @@ void quickSort(T array[], int length) {
 	if (length <= 0) {
 		return;
 	}
-	int range[length][2] = { 0 };
+	vector<vector<int>> range(length, vector<int>(2));
+	//int range[length][2] = { 0 };
 	int p = 0;
 	range[p][0] = 0;
 	range[p][1] = length - 1;
@@ -238,19 +240,19 @@ void quickSort(T array[], int length) {
 				left++;
 			}
 			while (array[right] >= mid && left < right) {
-				right++;
+				right--;
 			}
 			T temp = array[left];
 			array[left] = array[right];
 			array[right] = temp;
 		}
-		if (array[left] <= mid) {
-			array[left] = mid;
-			array[r[0]] = array[left];
-		}
-		else {
+		if (array[left]>=mid)
+		{
 			left--;
 		}
+		array[r[0]] = array[left];
+		array[left] = mid;
+
 		range[p][0] = r[0];
 		range[p][1] = left - 1;
 		p++;
