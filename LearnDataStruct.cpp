@@ -14,7 +14,8 @@ int main()
     //shellSort(arr, len);
     //mergeSort(arr, len);
 	//quickSort(arr, len);
-    heapSort(arr, len);
+    //heapSort(arr, len);
+    countSort(arr, len);
     for (int i = 0; i < len; i++)
     {
         cout << arr[i] << "\t";
