@@ -257,3 +257,105 @@ void quickSort(T array[], int length) {
 		p++;
 	}
 }
+
+/*堆排序：是指利用堆这种数据结构所设计的一种排序算法
+
+数据对象：数组
+稳定性：false
+排序方式：内部排序
+平均时间复杂度：	O(nlogn)
+最好时间复杂度：    O(nlogn)
+最坏时间复杂度：    O(nlogn)
+空间复杂度:         O(1)
+算法：创建一个堆 H[0……n-1]；
+
+把堆首（最大值）和堆尾互换；
+
+把堆的尺寸缩小 1，并调用 shift_down(0)，目的是把新的数组顶端数据调整到相应位置；
+
+重复步骤 2，直到堆的尺寸为 1。
+*/
+template<typename T>
+void maxHeapify(T array[], int start, int end);
+template<typename T>
+void heapSort(T array[], int length) {
+	for (int i = length / 2 - 1; i >= 0; i--)
+	{
+		maxHeapify(array, i, length - 1);
+	}
+	for (int i = length - 1; i > 0; i--)
+	{
+		int temp = array[0];
+		array[0] = array[i];
+		array[i] = temp;
+		maxHeapify(array, 0, i-1);
+	}
+}
+// 获取大顶堆堆首
+template<typename T>
+void maxHeapify(T array[], int start, int end) {
+	int parent = start;
+	int son = start * 2 + 1;
+	while (son <= end) {
+		if (son + 1 <= end && array[son] < array[son + 1]) {
+			son++;
+		}
+		if (array[parent]>array[son])
+		{
+			return;
+		}
+		else
+		{
+			int temp = array[parent];
+			array[parent] = array[son];
+			array[son] = temp;
+			parent = son;
+			son = parent * 2 + 1;
+		}
+	}
+}
+/*计数排序：又是一种分而治之思想在排序算法上的典型应用。本质上来看，快速排序应该算是在冒泡排序基础上的递归分治法。
+
+数据对象：数组		链表
+稳定性：true
+排序方式：外部排序
+平均时间复杂度：	O(n+k)
+最好时间复杂度：    O(n+k)
+最坏时间复杂度：    O(n+k)
+空间复杂度:         O(k)
+算法：从数列中挑出一个元素，称为 "基准"（pivot）;
+
+重新排序数列，所有元素比基准值小的摆放在基准前面，所有元素比基准值大的摆在基准的后面（相同的数可以到任一边）。在这个分区退出之后，该基准就处于数列的中间位置。这个称为分区（partition）操作；
+
+递归地（recursive）把小于基准值元素的子数列和大于基准值元素的子数列排序；
+*/
+/*桶排序：又是一种分而治之思想在排序算法上的典型应用。本质上来看，快速排序应该算是在冒泡排序基础上的递归分治法。
+
+数据对象：数组		链表
+稳定性：true
+排序方式：外部排序
+平均时间复杂度：	O(n+k)
+最好时间复杂度：    O(n+k)
+最坏时间复杂度：    O(n*n)
+空间复杂度:         O(n+k)
+算法：从数列中挑出一个元素，称为 "基准"（pivot）;
+
+重新排序数列，所有元素比基准值小的摆放在基准前面，所有元素比基准值大的摆在基准的后面（相同的数可以到任一边）。在这个分区退出之后，该基准就处于数列的中间位置。这个称为分区（partition）操作；
+
+递归地（recursive）把小于基准值元素的子数列和大于基准值元素的子数列排序；
+*/
+/*快速排序：又是一种分而治之思想在排序算法上的典型应用。本质上来看，快速排序应该算是在冒泡排序基础上的递归分治法。
+
+数据对象：数组		链表
+稳定性：true
+排序方式：外部排序
+平均时间复杂度：	O(n*k)
+最好时间复杂度：    O(n*k)
+最坏时间复杂度：    O(n*k)
+空间复杂度:         O(n+k)
+算法：从数列中挑出一个元素，称为 "基准"（pivot）;
+
+重新排序数列，所有元素比基准值小的摆放在基准前面，所有元素比基准值大的摆在基准的后面（相同的数可以到任一边）。在这个分区退出之后，该基准就处于数列的中间位置。这个称为分区（partition）操作；
+
+递归地（recursive）把小于基准值元素的子数列和大于基准值元素的子数列排序；
+*/

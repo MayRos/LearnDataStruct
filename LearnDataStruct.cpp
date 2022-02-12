@@ -13,7 +13,8 @@ int main()
     //insertSort(arr, len);
     //shellSort(arr, len);
     //mergeSort(arr, len);
-	quickSort(arr, len);
+	//quickSort(arr, len);
+    heapSort(arr, len);
     for (int i = 0; i < len; i++)
     {
         cout << arr[i] << "\t";
