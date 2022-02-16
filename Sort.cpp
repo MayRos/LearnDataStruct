@@ -347,7 +347,6 @@ static void countSort(int array[], int length) {
 	}
 }
 
-
 /*桶排序：计数排序的升级版。它利用了函数的映射关系，高效与否的关键就在于这个映射函数的确定。
 
 数据对象：数组		链表
@@ -359,6 +358,54 @@ static void countSort(int array[], int length) {
 空间复杂度:         O(n+k)
 算法：
 */
+struct ListNode{
+	explicit ListNode(int i = 0):mData(i),mNext(NULL){}
+	ListNode* mNext;
+	int mData;
+}
+void insert(ListNode* head,int val){
+	ListNode dummyNode;
+	ListNode *newNode = new ListNode(val);
+	ListNode *pre,*curr;
+	dummyNode.mNext = head;
+	pre = &dummyNode;
+	curr = head;
+	while(nullptr != curr && curr->mData<=val){
+		pre = curr;
+		curr = curr->mNext;
+	}
+	newNode->mNext = curr;
+	pre->mNext = newNode;
+	head = dummyNode.mNext; 
+}
+void Merge(ListNode* head1,ListNode* head2){
+	ListNode dummyNodr;
+	ListNode *dummy = &dummyNode;
+	while(nullptr != head1 && nullptr != head2){
+		if(head1->mData <= head2->mData){
+			dummy->mNext = head1;
+			head1 = head1->mNext;
+		}else{
+			dummy->mNext = head2;
+			head2 = head2->mNext;
+		}
+		dummy = dummy->mNext;
+	}
+	if(nullptr != head1)dummy->mNext = head1;
+	if(nullptr != head2)dummy->mNext = head2;
+	head1 = dummyNode.mNext;
+}
+static void buchetSort(int array[], int n){
+	const int BUCKET_NUM = 10;
+	vector<ListNode*> buckets(BUCKET_NUM,(ListNode*)(0));
+	for(int i=0;i<n;i++){
+		int index = arr[i]/BUCKET_NUM;
+		ListNode*head = buckets.at(index);
+		insert(head,arr[i]);
+	}
+	ListNode *head = buckets.at(0);
+	for(int i=1);
+}
 /*基数排序：其原理是将整数按位数切割成不同的数字，然后按每个位数分别比较。
 
 数据对象：数组		链表
