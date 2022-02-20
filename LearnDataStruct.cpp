@@ -16,7 +16,8 @@ int main()
 	//quickSort(arr, len);
     //heapSort(arr, len);
     //countSort(arr, len);
-    buchetSort(arr, len);
+    //buchetSort(arr, len);
+    radixSort(arr, len);
     for (int i = 0; i < len; i++)
     {
         cout << arr[i] << "\t";
