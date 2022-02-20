@@ -358,30 +358,30 @@ static void countSort(int array[], int length) {
 空间复杂度:         O(n+k)
 算法：
 */
-struct ListNode{
-	explicit ListNode(int i = 0):mData(i),mNext(NULL){}
+struct ListNode {
+	explicit ListNode(int i = 0) :mData(i), mNext(NULL) {}
 	ListNode* mNext;
 	int mData;
-}
-void insert(ListNode* head,int val){
+};
+static ListNode* insert(ListNode* head,int val){
 	ListNode dummyNode;
 	ListNode *newNode = new ListNode(val);
 	ListNode *pre,*curr;
 	dummyNode.mNext = head;
 	pre = &dummyNode;
 	curr = head;
-	while(nullptr != curr && curr->mData<=val){
+	while(NULL != curr && curr->mData<=val){
 		pre = curr;
 		curr = curr->mNext;
 	}
 	newNode->mNext = curr;
 	pre->mNext = newNode;
-	head = dummyNode.mNext; 
+	return dummyNode.mNext; 
 }
-void Merge(ListNode* head1,ListNode* head2){
-	ListNode dummyNodr;
+static ListNode* Merge(ListNode* head1,ListNode* head2){
+	ListNode dummyNode;
 	ListNode *dummy = &dummyNode;
-	while(nullptr != head1 && nullptr != head2){
+	while(NULL != head1 && NULL != head2){
 		if(head1->mData <= head2->mData){
 			dummy->mNext = head1;
 			head1 = head1->mNext;
@@ -391,20 +391,27 @@ void Merge(ListNode* head1,ListNode* head2){
 		}
 		dummy = dummy->mNext;
 	}
-	if(nullptr != head1)dummy->mNext = head1;
-	if(nullptr != head2)dummy->mNext = head2;
-	head1 = dummyNode.mNext;
+	if(NULL != head1)dummy->mNext = head1;
+	if(NULL != head2)dummy->mNext = head2;
+	return dummyNode.mNext;
 }
 static void buchetSort(int array[], int n){
 	const int BUCKET_NUM = 10;
 	vector<ListNode*> buckets(BUCKET_NUM,(ListNode*)(0));
-	for(int i=0;i<n;i++){
-		int index = arr[i]/BUCKET_NUM;
-		ListNode*head = buckets.at(index);
-		insert(head,arr[i]);
+	for (int i = 0; i < n; i++) {
+		int index = array[i] / BUCKET_NUM;
+		ListNode* head = buckets.at(index);
+		buckets.at(index) = insert(head, array[i]);
 	}
 	ListNode *head = buckets.at(0);
-	for(int i=1);
+	for (int i = 1; i < BUCKET_NUM; ++i) {
+		head = Merge(head, buckets.at(i));
+	}
+	for (int  i = 0; i < n ; ++i)
+	{
+		array[i] = head->mData;
+		head = head->mNext;
+	}
 }
 /*基数排序：其原理是将整数按位数切割成不同的数字，然后按每个位数分别比较。
 
