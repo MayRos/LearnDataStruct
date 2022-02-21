@@ -141,6 +141,7 @@
   <ItemGroup>
     <ClCompile Include="LearnDataStruct.cpp" />
     <ClCompile Include="Sort.cpp" />
+    <ClCompile Include="StringMatch.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

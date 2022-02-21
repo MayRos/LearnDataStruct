@@ -2,27 +2,12 @@
 //
 
 #include <iostream>
-#include "Sort.cpp"
+#include "StringMatch.cpp"
 int main()
 {
-    std::cout << "Hello World!\n";
-    int arr[] = { 5,9,1,3,74,6,2 };
-    int len = 7;
-    //bubbleSort(arr, len);
-    //selectionSort(arr, len);
-    //insertSort(arr, len);
-    //shellSort(arr, len);
-    //mergeSort(arr, len);
-	//quickSort(arr, len);
-    //heapSort(arr, len);
-    //countSort(arr, len);
-    //buchetSort(arr, len);
-    radixSort(arr, len);
-    for (int i = 0; i < len; i++)
-    {
-        cout << arr[i] << "\t";
-    }
-    
+    string str1 = "zhuanlanzhihu";
+    string str2 = "zhihu";
+    //cout << NaiveMartch(str1, str2);
 }
 
 // 运行程序: Ctrl + F5 或调试 >“开始执行(不调试)”菜单
