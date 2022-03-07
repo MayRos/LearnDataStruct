@@ -8,6 +8,8 @@ int main()
     string str1 = "zhuanlanzhihu";
     string str2 = "zhihu";
     //cout << NaiveMartch(str1, str2);
+    cout << kmp(str1, str2);
+
 }
 
 // 运行程序: Ctrl + F5 或调试 >“开始执行(不调试)”菜单
